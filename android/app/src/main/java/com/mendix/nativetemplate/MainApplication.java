@@ -10,6 +10,7 @@ import com.horcrux.svg.SvgPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.mendix.mendixnative.MendixReactApplication;
+import com.microsoft.codepush.react.CodePush;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.polidea.reactnativeble.BlePackage;
 import com.proyecto26.inappbrowser.RNInAppBrowserPackage;
@@ -36,9 +37,15 @@ public class MainApplication extends MendixReactApplication {
   }
 
   @Override
+  public String getJSBundleFile() {
+    return CodePush.getJSBundleFile();
+  }
+
+  @Override
   public List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new CodePush("DeploymentKey", getApplicationContext(), BuildConfig.DEBUG),
             new RNGestureHandlerPackage(),
             new RNCWebViewPackage(),
             new RNViewShotPackage(),
